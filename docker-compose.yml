@@ -1,0 +1,18 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP .NET Core service.
+version: "3.4"
+
+services:
+  mysql-development:
+    image: mysql/mysql-server:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: helloworld
+      MYSQL_DATABASE: HairSalon
+    ports:
+      - "3308:3306"
+  hairsalon:
+    image: hairsalon
+    build:
+      context: .
+      dockerfile: HairSalon/Dockerfile
+    ports:
+      - 5000:80
